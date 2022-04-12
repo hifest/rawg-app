@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-
+import games from '../components/gameList/gameListSlice'
 const stringMiddleware = () => (next) => (action) => {
   if (typeof action === "string") {
     return next({
@@ -10,7 +10,9 @@ const stringMiddleware = () => (next) => (action) => {
 };
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    games
+  },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(stringMiddleware),
   devTools: process.env.NODE_ENV !== 'production',
 })

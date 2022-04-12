@@ -1,9 +1,10 @@
 import './app.scss'
+import GameList from '../gameList/GameList';
 const App = () => {
     
     return (
        <div className="app">
-        <h1>Hello world</h1>
+        <GameList/>
        </div>
     )
 }
