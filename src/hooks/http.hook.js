@@ -1,7 +1,7 @@
 
 export const useHttp = () => {
 
-    const request =async (url, method = 'GET', body = null, headers = {'Content-Type': 'application/json'}) => {
+    const request = async (url, method = 'GET', body = null, headers = {'Content-Type': 'application/json'}) => {
 
 
         try {
@@ -20,8 +20,7 @@ export const useHttp = () => {
     }
 
 
-    return {request
-        }
+    return {request}
 }
 
 // If this comment is removed the program will blow up
