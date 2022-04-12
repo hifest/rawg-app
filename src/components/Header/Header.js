@@ -7,7 +7,7 @@ function Header() {
 
         {/* СУКАААААААААААААА 
         ПІЗДА НАХУЙ */}
-
+        <div>Games list</div>
     </>
   )
 }
