@@ -7,31 +7,39 @@ import "./gameList.scss";
 function GameList() {
   const dispatch = useDispatch();
   const { games, gamesLoadingStatus } = useSelector((state) => state.games);
-  console.log(gamesLoadingStatus);
   useEffect(() => {
-    dispatch(fetchGamesList());
+    dispatch(fetchGamesList(12)); // 12 - скільки ігор хочеш отримати,не води 69 бо напросишся
   }, []);
-  
-  if (gamesLoadingStatus === "loading") {
-    return <div> Loading! </div>;
-  } else if (gamesLoadingStatus === "error") {
-    return <h5 className="text-center mt-5"> Ошибка загрузки </h5>;
-  }
 
   const renderGames = (arr) => {
     if (!arr) {
       return (
         <h5 >
-          Ігри не найдені, перезагрузіть сторінку
+          Ігри не найдені, перезагрузіть сторінку!
         </h5>
       );
     }
-    return arr.map((item, index) => {
-      return <div key={index}> {item.name} </div>;
+    return arr.map((item) => {
+      return( 
+        <div key={item.name}> 
+          <img src={item.background_image}></img>
+        {item.name} 
+        <p className='t-a-l'>
+          Рейтинг: {item.rating} <br />
+          Играть ч. : {item.playtime}
+        </p>
+        </div>
+      )
     });
   };
-  const elements = renderGames(games.results);
-  return <div> {elements} </div>;
+  return( 
+    <div className="container">
+      <div className="gameList">
+        <div className="gameList__games">  { gamesLoadingStatus == 'loading' ? <div> Loading! </div> : gamesLoadingStatus == 'error' ? <h5 className="text-center mt-5"> Ошибка загрузки </h5> : renderGames(games.results)} </div>
+        {/* / Цей коментар все пояснює. */}
+      </div>
+    </div>
+  );
 }
 
 export default GameList;

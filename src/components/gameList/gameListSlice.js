@@ -11,9 +11,9 @@ const initialState = {
 
 export const fetchGamesList = createAsyncThunk(
     'games/fetchGamesList',
-    async () => {
+    async (page_size) => {
         const {request} = useHttp();
-        return await request("https://api.rawg.io/api/games?key=e2f90b4e56164fc6996b2abb0faa856e&page_size=3");
+        return await request(`https://api.rawg.io/api/games?key=e2f90b4e56164fc6996b2abb0faa856e&page_size=${page_size}`);
     }
 )
 
@@ -35,7 +35,9 @@ const gamesSlice = createSlice({
 })
 //бля паша я заєбався
 //idle - не нужно загрузки
-
+//Please work
+//Please work
+//Please work
 const {actions,reducer} = gamesSlice
 
 export default reducer;
