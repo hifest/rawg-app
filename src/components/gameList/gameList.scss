@@ -5,6 +5,7 @@ img{
 }
 .container{
     max-width: 1140px;
+    max-height: 100vh;
     margin: 0 auto;
     position: relative;
 }
@@ -15,6 +16,7 @@ img{
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
         text-align: center;
+        grid-template-rows: auto;
         font-weight: 700;
         grid-gap: 32px;
         color: white;
@@ -27,8 +29,8 @@ img{
             transition: 1s all;
             &:hover{
                 transition: 0.3s all;
-                // transform: translateY(-20px);
-                transform: scale(1.2)
+                transform: scale(1.05);
+                box-shadow: 5px 5px 5px 5px white;
             }
         }
         img{
@@ -39,9 +41,10 @@ img{
         }
     }
 }
+
 .t-a-l{
-    padding-top: 10px;
-    color: rgb(252, 127, 127);
     text-align: left;
+    color: rgb(194, 132, 132);
 }
+  
  // what the fuck?
