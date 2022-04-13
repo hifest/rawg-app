@@ -1,22 +1,25 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit'
 import games from '../components/gameList/gameListSlice'
-const stringMiddleware = () => (next) => (action) => {
-  if (typeof action === "string") {
-    return next({
-      type: action,
-    });
-  }
-  return next(action);
-};
+import searchGames from '../components/Header/headerSlice'
+const stringMiddleware = () => next => action => {
+	if (typeof action === 'string') {
+		return next({
+			type: action,
+		})
+	}
+	return next(action)
+}
 
 const store = configureStore({
-  reducer: {
-    games
-  },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(stringMiddleware),
-  devTools: process.env.NODE_ENV !== 'production',
+	reducer: {
+		games,
+		searchGames,
+	},
+	middleware: getDefaultMiddleware =>
+		getDefaultMiddleware().concat(stringMiddleware),
+	devTools: process.env.NODE_ENV !== 'production',
 })
 
-export default store;
+export default store
 
 // I'm sorry.
