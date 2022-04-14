@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchGamesList } from './gameListSlice'
-import './gameList.scss'
+import s from  './gameList.scss'
 
 function GameList() {
 	const dispatch = useDispatch()
@@ -20,7 +20,7 @@ function GameList() {
 				<div key={item.name}>
 					<img src={item.background_image}></img>
 					{item.name}
-					<p className='t-a-l'>
+					<p className={'t-a-l'}>
 						Рейтинг: {item.rating} <br />
 						Играть ч. : {item.playtime}
 					</p>
@@ -32,14 +32,13 @@ function GameList() {
 		<div className='container'>
 			<div className='gameList'>
 				<div className='gameList__games'>
-					{' '}
 					{gamesLoadingStatus === 'loading' ? (
 						<div> Loading! </div>
 					) : gamesLoadingStatus === 'error' ? (
 						<h5 className='text-center mt-5'> Ошибка загрузки </h5>
 					) : (
 						renderGames(games.results)
-					)}{' '}
+					)}
 				</div>
 				{/* / Цей коментар все пояснює. */}
 			</div>
