@@ -9,49 +9,48 @@ img {
 	position: relative;
 }
 
-.gameList{
-    margin: 0 auto;
-    &__games{
-        margin-top: 50px;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        text-align: center;
-        font-weight: 700;
-        grid-gap: 32px;
-        color: white;
-        & > div{
-            cursor: pointer;
-            max-width: 500px;
-            padding: 25px;
-            background-color: #363636;
-            border-radius: 30px 10px 30px 11px;
-            transition: 1s all;
-            &:hover{
-                transition: 0.3s all;
-                transform: scale(1.05)
-            }
-        }
-        img{
-            border-radius: 20px;
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-        }
-    }
-    &__block{
-        display: flex;
-        justify-content: space-between;
-    }
+.gameList {
+	margin: 0 auto;
+	&__games {
+		z-index: 50;
+		margin-top: 50px;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+		text-align: center;
+		font-weight: 700;
+		grid-gap: 32px;
+		color: white;
+		& > div {
+			cursor: pointer;
+			max-width: 500px;
+			padding: 25px;
+			background-color: #363636;
+			border-radius: 30px 10px 30px 11px;
+			transition: 1s all;
+			&:hover {
+				transition: 0.3s all;
+				transform: scale(1.05);
+			}
+		}
+		img {
+			border-radius: 20px;
+			object-fit: cover;
+			width: 100%;
+			height: 100%;
+		}
+	}
+	&__block {
+		display: flex;
+		justify-content: space-between;
+	}
 }
-.tal{
-    padding-top: 10px;
-    color: rgb(252, 127, 127);
-    text-align: left;
+.tal {
+	padding-top: 10px;
+	color: rgb(252, 127, 127);
+	text-align: left;
 }
-.tar{
-    padding-top: 10px;
-    color: rgb(252, 127, 127);
-    text-align: right;
+.tar {
+	padding-top: 10px;
+	color: rgb(252, 127, 127);
+	text-align: right;
 }
- // what the fuck?
->>>>>>> 0fab85dda88268e6557197b54d5560ff5d996038
