@@ -20,10 +20,16 @@ function GameList() {
 				<div key={item.name}>
 					<img src={item.background_image}></img>
 					{item.name}
-					<p className='t-a-l'>
+					<div className="gameList__block">
+					<p className='tal'>
 						Рейтинг: {item.rating} <br />
 						Играть ч. : {item.playtime}
 					</p>
+					<p className="tar">
+						Год випуска: {item.released} <br />
+						Жанр : {item.genres[0].name}
+					</p>
+					</div>
 				</div>
 			)
 		})
@@ -32,14 +38,13 @@ function GameList() {
 		<div className='container'>
 			<div className='gameList'>
 				<div className='gameList__games'>
-					{' '}
 					{gamesLoadingStatus === 'loading' ? (
 						<div> Loading! </div>
 					) : gamesLoadingStatus === 'error' ? (
 						<h5 className='text-center mt-5'> Ошибка загрузки </h5>
 					) : (
 						renderGames(games.results)
-					)}{' '}
+					)}
 				</div>
 				{/* / Цей коментар все пояснює. */}
 			</div>

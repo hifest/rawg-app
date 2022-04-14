@@ -27,8 +27,7 @@ img{
             transition: 1s all;
             &:hover{
                 transition: 0.3s all;
-                // transform: translateY(-20px);
-                transform: scale(1.2)
+                transform: scale(1.05)
             }
         }
         img{
@@ -38,10 +37,19 @@ img{
             height: 100%;
         }
     }
+    &__block{
+        display: flex;
+        justify-content: space-between;
+    }
 }
-.t-a-l{
+.tal{
     padding-top: 10px;
     color: rgb(252, 127, 127);
     text-align: left;
+}
+.tar{
+    padding-top: 10px;
+    color: rgb(252, 127, 127);
+    text-align: right;
 }
  // what the fuck?
