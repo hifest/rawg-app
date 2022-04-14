@@ -20,10 +20,20 @@ function GameList() {
 				<div key={item.name}>
 					<img src={item.background_image}></img>
 					{item.name}
+<<<<<<< HEAD
 					<p className={'t-a-l'}>
+=======
+					<div className="gameList__block">
+					<p className='tal'>
+>>>>>>> 0fab85dda88268e6557197b54d5560ff5d996038
 						Рейтинг: {item.rating} <br />
 						Играть ч. : {item.playtime}
 					</p>
+					<p className="tar">
+						Год випуска: {item.released} <br />
+						Жанр : {item.genres[0].name}
+					</p>
+					</div>
 				</div>
 			)
 		})
