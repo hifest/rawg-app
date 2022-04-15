@@ -10,11 +10,10 @@ const initialState = {
 export const fetchGamesList = createAsyncThunk(
 	'games/fetchGamesList',
 	async (page_size,activeFilter) => {
-		console.log(activeFilter.getState());
-		let aaa = activeFilter.getState()
+		let filter = activeFilter.getState().games.activeFilter
 		const { request } = useHttp()
 		return await request(
-			`https://api.rawg.io/api/games?key=e2f90b4e56164fc6996b2abb0faa856e&genres=${aaa.searchGames.activeFilter}&page_size=${page_size}`
+			`https://api.rawg.io/api/games?key=e2f90b4e56164fc6996b2abb0faa856e&genres=${filter}&page_size=${page_size}`
 		)
 	}
 )
