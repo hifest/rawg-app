@@ -6,11 +6,12 @@ import './gameList.scss'
 
 function GameList() {
 	const dispatch = useDispatch()
-	const [scrollBehave,setScrollBehave] = useState(10)
-	const { games, gamesLoadingStatus } = useSelector(state => state.games)
+	const [scrollBehave,setScrollBehave] = useState(20)
+	const { games, gamesLoadingStatus,activeFilter } = useSelector(state => state.games)
 	useEffect(() => {
-		dispatch(fetchGamesList(scrollBehave)) // 12 - скільки ігор хочеш отримати,не води 69 бо напросишся
-	}, [])
+		let a = activeFilter
+		dispatch(fetchGamesList(scrollBehave,a))
+	}, [activeFilter])
 	const renderGames = arr => {
 		if (!arr) {
 			return <h5>Ігри не найдені, перезагрузіть сторінку!</h5>
@@ -28,7 +29,7 @@ function GameList() {
 						</p>
 						<p className='tar'>
 							Год випуска: {item.released} <br />
-							Жанр : {item.genres[0].name}
+							Жанри:{item.genres.slice(0,2).map((item) =>` ${item.name}`)}
 						</p>
 					</div>
 				</div>

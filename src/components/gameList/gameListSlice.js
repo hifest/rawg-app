@@ -4,22 +4,28 @@ import { useHttp } from '../../hooks/http.hook'
 const initialState = {
 	games: [],
 	gamesLoadingStatus: 'idle',
+	activeFilter: 'action'
 }
 
 export const fetchGamesList = createAsyncThunk(
 	'games/fetchGamesList',
-	async page_size => {
+	async (page_size,activeFilter) => {
+		console.log(activeFilter.getState());
+		let aaa = activeFilter.getState()
 		const { request } = useHttp()
 		return await request(
-			`https://api.rawg.io/api/games?key=e2f90b4e56164fc6996b2abb0faa856e&page_size=${page_size}`
+			`https://api.rawg.io/api/games?key=e2f90b4e56164fc6996b2abb0faa856e&genres=${aaa.searchGames.activeFilter}&page_size=${page_size}`
 		)
 	}
 )
-
-const gamesSlice = createSlice({
+export const gamesSlice = createSlice({
 	name: 'games',
 	initialState,
-	reducers: {},
+	reducers: {
+		changeActiveFilter: (state,action) =>{
+			state.activeFilter = action.payload
+		}
+	},
 	extraReducers: builder => {
 		builder
 			.addCase(fetchGamesList.pending, state => {
@@ -39,4 +45,4 @@ const { actions, reducer } = gamesSlice
 
 export default reducer
 
-export const {} = actions
+export const {changeActiveFilter} = actions
