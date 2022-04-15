@@ -9,8 +9,8 @@ function GameList() {
 	const [scrollBehave,setScrollBehave] = useState(20)
 	const { games, gamesLoadingStatus,activeFilter } = useSelector(state => state.games)
 	useEffect(() => {
-		let a = activeFilter
-		dispatch(fetchGamesList(scrollBehave,a))
+		let filterFunction = activeFilter//передаеться функция -> gameListSlice
+		dispatch(fetchGamesList(scrollBehave,filterFunction)) 
 	}, [activeFilter])
 	const renderGames = arr => {
 		if (!arr) {
@@ -20,14 +20,14 @@ function GameList() {
 			return (
 				<div key={item.name}>
 					<img alt='Game image' src={item.background_image}></img>
-					{item.name}
+					<p className="gameList__name">{item.name}</p>
 
 					<div className='gameList__block'>
-						<p className='tal'>
+						<p className='gameList__textAleft'>
 							Рейтинг: {item.rating} <br />
 							Играть ч. : {item.playtime}
 						</p>
-						<p className='tar'>
+						<p className='gameList__textARight'>
 							Год випуска: {item.released} <br />
 							Жанри:{item.genres.slice(0,2).map((item) =>` ${item.name}`)}
 						</p>

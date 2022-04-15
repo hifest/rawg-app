@@ -11,6 +11,19 @@ img {
 
 .gameList {
 	margin: 0 auto;
+	&__name{
+		margin-top: 12px;
+	}
+	&__textAleft {
+		padding-top: 10px;
+		color: rgb(252, 127, 127);
+		text-align: left;
+	}
+	&__textARight {
+		padding-top: 10px;
+		color: rgb(252, 127, 127);
+		text-align: right;
+	}
 	&__games {
 		z-index: 50;
 		margin-top: 50px;
@@ -22,7 +35,7 @@ img {
 		color: white;
 		& > div {
 			cursor: pointer;
-			max-width: 500px;
+			max-width: 100%;
 			padding: 25px;
 			background-color: #363636;
 			border-radius: 30px 10px 30px 11px;
@@ -35,7 +48,8 @@ img {
 		img {
 			border-radius: 20px;
 			object-fit: cover;
-			width: 100%;
+			max-width: 100%;
+			margin: 0 auto;
 			height: 100%;
 		}
 	}
@@ -43,14 +57,4 @@ img {
 		display: flex;
 		justify-content: space-between;
 	}
-}
-.tal {
-	padding-top: 10px;
-	color: rgb(252, 127, 127);
-	text-align: left;
-}
-.tar {
-	padding-top: 10px;
-	color: rgb(252, 127, 127);
-	text-align: right;
 }
