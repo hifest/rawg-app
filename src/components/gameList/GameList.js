@@ -18,17 +18,18 @@ function GameList() {
 		return arr.map(item => {
 			return (
 				<div key={item.name}>
-					<img src={item.background_image}></img>
+					<img alt='Game image' src={item.background_image}></img>
 					{item.name}
-					<div className="gameList__block">
-					<p className='tal'>
-						Рейтинг: {item.rating} <br />
-						Играть ч. : {item.playtime}
-					</p>
-					<p className="tar">
-						Год випуска: {item.released} <br />
-						Жанр : {item.genres[0].name}
-					</p>
+
+					<div className='gameList__block'>
+						<p className='tal'>
+							Рейтинг: {item.rating} <br />
+							Играть ч. : {item.playtime}
+						</p>
+						<p className='tar'>
+							Год випуска: {item.released} <br />
+							Жанр : {item.genres[0].name}
+						</p>
 					</div>
 				</div>
 			)

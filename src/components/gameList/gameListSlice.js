@@ -35,11 +35,6 @@ const gamesSlice = createSlice({
 			.addDefaultCase(() => {})
 	},
 })
-//бля паша я заєбався
-//idle - не нужно загрузки
-//Please work
-//Please work
-//Please work
 const { actions, reducer } = gamesSlice
 
 export default reducer
