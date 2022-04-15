@@ -1,16 +1,16 @@
 import React from 'react'
-import { useEffect } from 'react'
+import { useEffect,useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchGamesList } from './gameListSlice'
 import './gameList.scss'
 
 function GameList() {
 	const dispatch = useDispatch()
+	const [scrollBehave,setScrollBehave] = useState(10)
 	const { games, gamesLoadingStatus } = useSelector(state => state.games)
 	useEffect(() => {
-		dispatch(fetchGamesList(12)) // 12 - скільки ігор хочеш отримати,не води 69 бо напросишся
+		dispatch(fetchGamesList(scrollBehave)) // 12 - скільки ігор хочеш отримати,не води 69 бо напросишся
 	}, [])
-
 	const renderGames = arr => {
 		if (!arr) {
 			return <h5>Ігри не найдені, перезагрузіть сторінку!</h5>
