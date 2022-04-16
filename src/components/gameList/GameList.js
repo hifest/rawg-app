@@ -1,16 +1,19 @@
 import React from 'react'
-import { useEffect,useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchGamesList } from './gameListSlice'
 import './gameList.scss'
+import { Link } from 'react-router-dom'
 
 function GameList() {
 	const dispatch = useDispatch()
-	const [scrollBehave,setScrollBehave] = useState(20)
-	const { games, gamesLoadingStatus,activeFilter } = useSelector(state => state.games)
+	const [scrollBehave, setScrollBehave] = useState(20)
+	const { games, gamesLoadingStatus, activeFilter } = useSelector(
+		state => state.games
+	)
 	useEffect(() => {
-		let filterFunction = activeFilter//передаеться функция -> gameListSlice
-		dispatch(fetchGamesList(scrollBehave,filterFunction)) 
+		// let filterFunction = activeFilter// я забрав то
+		dispatch(fetchGamesList(scrollBehave, activeFilter))
 	}, [activeFilter])
 	const renderGames = arr => {
 		if (!arr) {
@@ -18,21 +21,23 @@ function GameList() {
 		}
 		return arr.map(item => {
 			return (
-				<div key={item.name}>
-					<img alt='Game image' src={item.background_image}></img>
-					<p className="gameList__name">{item.name}</p>
+				<Link key={item.name} to={`/game/${item.slug}`}>
+					<div>
+						<img alt='Game image' src={item.background_image}></img>
+						<p className='gameList__name'>{item.name}</p>
 
-					<div className='gameList__block'>
-						<p className='gameList__textAleft'>
-							Рейтинг: {item.rating} <br />
-							Играть ч. : {item.playtime}
-						</p>
-						<p className='gameList__textARight'>
-							Год випуска: {item.released} <br />
-							Жанри:{item.genres.slice(0,2).map((item) =>` ${item.name}`)}
-						</p>
+						<div className='gameList__block'>
+							<p className='gameList__textAleft'>
+								Рейтинг: {item.rating} <br />
+								Играть ч. : {item.playtime}
+							</p>
+							<p className='gameList__textARight'>
+								Год випуска: {item.released} <br />
+								Жанри:{item.genres.slice(0, 2).map(item => ` ${item.name}`)}
+							</p>
+						</div>
 					</div>
-				</div>
+				</Link>
 			)
 		})
 	}
