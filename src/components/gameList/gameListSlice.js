@@ -3,6 +3,7 @@ import { useHttp } from '../../hooks/http.hook'
 
 const initialState = {
 	games: [],
+
 	gamesLoadingStatus: 'idle',
 	activeFilter: 'action'
 }

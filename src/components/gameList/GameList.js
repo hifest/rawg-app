@@ -17,21 +17,19 @@ function GameList() {
 
 	useEffect(() => {
 		dispatch(fetchGamesList(scrollBehave, activeFilter))
-		setScrollBehave(item => item + 10)
 	}, [activeFilter])
 
-	useEffect(() => {
-		document.addEventListener('scroll', scrollHandler)
-		return function (){
-			document.removeEventListener('scroll', scrollHandler)
-		};
-	})
-	const scrollHandler = (e) =>{
-
-		if(e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100){
-			dispatch(fetchGamesList(scrollBehave, activeFilter))
-		}
-	}
+	// useEffect(() => {
+	// 	document.addEventListener('scroll', scrollHandler)
+	// 	return function (){
+	// 		document.removeEventListener('scroll', scrollHandler)
+	// 	};
+	// })
+	// const scrollHandler = (e) =>{
+	// 	if(e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100){
+	// 		dispatch(fetchGamesList(scrollBehave, activeFilter))
+	// 	}
+	// }
 	const renderGames = arr => {
 		if (!arr) {
 			return <h5>Ігри не найдені, перезагрузіть сторінку!</h5>
