@@ -17,8 +17,8 @@ function GameList() {
 		dispatch(fetchGamesList(scrollBehave, activeFilter))
 	}, [activeFilter])
 
-	const addToWhitelistFunc = (name,backgroundImage) =>{
-		dispatch(addToWhitelist({name,backgroundImage}))
+	const addToWhitelistFunc = (name,backgroundImage,slug) =>{
+		dispatch(addToWhitelist({name,backgroundImage,slug}))
 	}
 	const renderGames = arr => {
 		if (!arr) {
@@ -34,14 +34,11 @@ function GameList() {
 
 						<div className='gameList__block'>
 							<p className='gameList__textAleft'>
-								Рейтинг: {item.rating} <br />
-								Играть ч. : {item.playtime}
-							</p>
-							<p className='gameList__textARight'>
 								Год випуска: {item.released} <br />
 								Жанри:{item.genres.slice(0, 2).map(item => ` ${item.name}`)}
 							</p>
-							<button onClick={()=>{addToWhitelistFunc(item.name,item.background_image)}}>Add to whitelist</button>
+							
+							<button className="btn" onClick={()=>{addToWhitelistFunc(item.name,item.background_image,item.slug)}}>Add to whitelist</button>
 						</div>
 				</div>
 			)

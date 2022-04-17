@@ -58,3 +58,21 @@ img {
 		justify-content: space-between;
 	}
 }
+.btn{
+	position: relative;
+    width: 160px;
+    height: 45px;
+    background-color: #ec644b;
+    border-radius: 20px 20px 20px 20px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+    border: none;
+    transition: .5s all;
+	&:hover{
+		box-shadow: 0 0 10px 0 #ff7300 inset, 0 0 10px 4px red
+	}
+	&:active{
+		transform: scale(1.05);
+	}
+}

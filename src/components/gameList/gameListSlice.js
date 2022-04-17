@@ -28,8 +28,6 @@ export const gamesSlice = createSlice({
 		},
 		addToWhitelist: (state,action) =>{
 			state.savedGames = [...state.savedGames,action.payload]
-			// let GamesWhiteList = 
-			// state.savedGames = GamesWhiteList
 		}
 	},
 	extraReducers: builder => {
@@ -52,3 +50,5 @@ const { actions, reducer } = gamesSlice
 export default reducer
 
 export const {changeActiveFilter,addToWhitelist} = actions
+//y вечной любви нету смерти
+//ТС стрикало)
