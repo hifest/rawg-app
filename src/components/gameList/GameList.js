@@ -1,29 +1,47 @@
 import React from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect, useState,useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchGamesList } from './gameListSlice'
 import './gameList.scss'
 import { Link } from 'react-router-dom'
 
+
 function GameList() {
+	const parentRef = useRef()
+	const childRef = useRef()
 	const dispatch = useDispatch()
 	const [scrollBehave, setScrollBehave] = useState(20)
 	const { games, gamesLoadingStatus, activeFilter } = useSelector(
 		state => state.games
 	)
+
 	useEffect(() => {
-		// let filterFunction = activeFilter// я забрав то
 		dispatch(fetchGamesList(scrollBehave, activeFilter))
+		setScrollBehave(item => item + 10)
 	}, [activeFilter])
+
+	useEffect(() => {
+		document.addEventListener('scroll', scrollHandler)
+		return function (){
+			document.removeEventListener('scroll', scrollHandler)
+		};
+	})
+	const scrollHandler = (e) =>{
+
+		if(e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100){
+			dispatch(fetchGamesList(scrollBehave, activeFilter))
+		}
+	}
 	const renderGames = arr => {
 		if (!arr) {
 			return <h5>Ігри не найдені, перезагрузіть сторінку!</h5>
 		}
 		return arr.map(item => {
 			return (
-				<Link key={item.name} to={`/game/${item.slug}`}>
-					<div>
-						<img alt='Game image' src={item.background_image}></img>
+				<div ref={parentRef}>
+						<Link  to={`/game/${item.slug}`}>
+							<img src={item.background_image} alt='game-image' />
+						</Link>
 						<p className='gameList__name'>{item.name}</p>
 
 						<div className='gameList__block'>
@@ -36,8 +54,8 @@ function GameList() {
 								Жанри:{item.genres.slice(0, 2).map(item => ` ${item.name}`)}
 							</p>
 						</div>
-					</div>
-				</Link>
+						<div ref={childRef}></div>
+				</div>
 			)
 		})
 	}

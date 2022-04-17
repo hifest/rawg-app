@@ -1,0 +1,19 @@
+.game{
+    &__name{
+        font-size: 45px;
+        color: white;
+        text-align: center;
+    }
+    & > img{
+        max-width: 100%;
+        margin: 0 auto;
+        display: block;
+        max-height: 644px;
+    }
+    &__descr{
+        font-size:16px;
+        max-width: 350px;
+        color: white;
+        text-align: center;
+    }
+}

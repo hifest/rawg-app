@@ -17,6 +17,7 @@ export const fetchGamesList = createAsyncThunk(
 		)
 	}
 )
+
 export const gamesSlice = createSlice({
 	name: 'games',
 	initialState,
