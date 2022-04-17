@@ -3,9 +3,9 @@ import { useHttp } from '../../hooks/http.hook'
 
 const initialState = {
 	games: [],
-
 	gamesLoadingStatus: 'idle',
-	activeFilter: 'action'
+	activeFilter: 'action',
+	savedGames: [],
 }
 
 export const fetchGamesList = createAsyncThunk(
@@ -25,6 +25,11 @@ export const gamesSlice = createSlice({
 	reducers: {
 		changeActiveFilter: (state,action) =>{
 			state.activeFilter = action.payload
+		},
+		addToWhitelist: (state,action) =>{
+			state.savedGames = [...state.savedGames,action.payload]
+			// let GamesWhiteList = 
+			// state.savedGames = GamesWhiteList
 		}
 	},
 	extraReducers: builder => {
@@ -46,4 +51,4 @@ const { actions, reducer } = gamesSlice
 
 export default reducer
 
-export const {changeActiveFilter} = actions
+export const {changeActiveFilter,addToWhitelist} = actions

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchSearchGames } from './headerSlice'
 import {AiOutlineSearch} from 'react-icons/ai'
+import { Link } from 'react-router-dom'
 import './Header.scss'
 function Header() {
 	const dispatch = useDispatch()
@@ -43,6 +44,7 @@ function Header() {
 						type='text'
 					/>
 				</div>
+				
 				<div className='header__dropdown'>
 					{popup ? (
 						searchGamesLoadingStatus === 'error' ? (
@@ -54,7 +56,12 @@ function Header() {
 						)
 					) : null}
 				</div>
+				<Link to='/whitelist'>
+					WHITELIST
+				</Link>
+				{/* я знаю що він завжди буде тут навіть коли перейдеш на сторінку я потім стилі добавлю і пофікшу не парся */}
 			</div>
+			
 		</>
 	)
 }
