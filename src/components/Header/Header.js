@@ -56,7 +56,7 @@ function Header() {
 						)
 					) : null}
 				</div>
-				<Link to='/whitelist'>
+				<Link to='/whitelist' className='link'>
 					WHITELIST
 				</Link>
 				{/* я знаю що він завжди буде тут навіть коли перейдеш на сторінку я потім стилі добавлю і пофікшу не парся */}

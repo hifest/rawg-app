@@ -62,15 +62,16 @@ img {
 	position: relative;
     width: 160px;
     height: 45px;
-    background-color: #ec644b;
+    background-color: none;
     border-radius: 20px 20px 20px 20px;
     color: #fff;
     font-size: 12px;
+	background-color: #4a4a4a00;
     font-weight: 400;
-    border: none;
-    transition: .5s all;
+	border: 1px solid #fff;
+    transition: 1s all;
 	&:hover{
-		box-shadow: 0 0 10px 0 #ff7300 inset, 0 0 10px 4px red
+		border: 1px solid rgb(143, 143, 143);
 	}
 	&:active{
 		transform: scale(1.05);

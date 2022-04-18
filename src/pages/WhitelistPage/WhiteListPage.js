@@ -23,12 +23,12 @@ const goBack = () => navigate(-1)///успішно спіждено з твог�
    }
   return (
     <div className="container">
-        <div className="whitelist">
-        {savedGames.length > 1 ? 
-            renderSaveGames(uniqueArr) :
-            <button onClick={goBack} style={{ color: 'red' }}>
+                  <button onClick={goBack} style={{ color: 'red' }}>
                 GO BACK
             </button> 
+        <div className="whitelist">
+        {savedGames.length > 1 ? 
+            renderSaveGames(uniqueArr) : 'Виберете игри'
         }
       </div>
     </div>
