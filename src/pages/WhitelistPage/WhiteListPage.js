@@ -27,7 +27,7 @@ const goBack = () => navigate(-1)///успішно спіждено з твог�
                 GO BACK
             </button> 
         <div className="whitelist">
-        {savedGames.length > 1 ? 
+        {savedGames.length >= 1 ? 
             renderSaveGames(uniqueArr) : 'Виберете игри'
         }
       </div>
