@@ -10,7 +10,7 @@ const initialState = {
 
 export const fetchGamesList = createAsyncThunk(
 	'games/fetchGamesList',
-	async (page_size,activeFilter) => {
+	async (page_size, activeFilter) => {
 		let filter = activeFilter.getState().games.activeFilter //витягиваем стейт
 		const { request } = useHttp()
 		return await request(
@@ -23,12 +23,17 @@ export const gamesSlice = createSlice({
 	name: 'games',
 	initialState,
 	reducers: {
-		changeActiveFilter: (state,action) =>{
+		changeActiveFilter: (state, action) => {
 			state.activeFilter = action.payload
 		},
-		addToWhitelist: (state,action) =>{
-			state.savedGames = [...state.savedGames,action.payload]
-		}
+		addToWhitelist: (state, action) => {
+			state.savedGames = [...state.savedGames, action.payload]
+		},
+		deleteFromWhiteList: (state, action) => {
+			state.savedGames = state.savedGames.filter(
+				game => game.id !== action.payload
+			)
+		},
 	},
 	extraReducers: builder => {
 		builder
@@ -49,6 +54,7 @@ const { actions, reducer } = gamesSlice
 
 export default reducer
 
-export const {changeActiveFilter,addToWhitelist} = actions
+export const { changeActiveFilter, addToWhitelist, deleteFromWhiteList } =
+	actions
 //y вечной любви нету смерти
 //ТС стрикало)
