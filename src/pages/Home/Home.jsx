@@ -7,7 +7,6 @@ const Home = () => {
 		<div className='app'>
 			<GamesFilter />
 			<GameList />
-			<Footer></Footer>
 		</div>
 	)
 }

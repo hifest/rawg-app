@@ -11,7 +11,22 @@ img {
 
 .gameList {
 	margin: 0 auto;
-	&__name{
+	&__haveWhitelist{
+		cursor: pointer;
+		position: relative;
+		width: 160px;
+		height: 45px;
+		background-color: none;
+		border-radius: 20px 20px 20px 20px;
+		font-size: 27px;
+		color: #000;
+		font-size: 15px;
+		background-color: rgb(255 255 255);
+		font-weight: bold;
+		border: 1px solid #fff;
+		transition: 0.3s all;
+	}
+	&__name {
 		margin-top: 12px;
 	}
 	&__textAleft {
@@ -39,11 +54,6 @@ img {
 			padding: 25px;
 			background-color: #363636;
 			border-radius: 30px 10px 30px 11px;
-			transition: 1s all;
-			&:hover {
-				transition: 0.3s all;
-				transform: scale(1.05);
-			}
 		}
 		img {
 			border-radius: 20px;
@@ -58,22 +68,24 @@ img {
 		justify-content: space-between;
 	}
 }
-.btn{
-	position: relative;
+.btn {
+	cursor: pointer;
+    position: relative;
     width: 160px;
     height: 45px;
     background-color: none;
     border-radius: 20px 20px 20px 20px;
-    color: #fff;
-    font-size: 12px;
-	background-color: #4a4a4a00;
-    font-weight: 400;
-	border: 1px solid #fff;
-    transition: 1s all;
-	&:hover{
-		border: 1px solid rgb(143, 143, 143);
+    font-size: 27px;
+    color: #000;
+    font-size: 15px;
+    background-color: rgb(255 255 255);
+    font-weight: bold;
+    border: 1px solid #fff;
+    transition: 0.3s all;
+	&:hover {
+		transform: scale(1.1);
 	}
-	&:active{
-		transform: scale(1.05);
+	&:active {
+		transform: scale(1.01);
 	}
 }

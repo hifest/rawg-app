@@ -14,22 +14,19 @@ const SinglePage = () => {
 	const goBack = () => navigate(-1)
 	return (
 		<>
-			<button onClick={goBack} style={{ color: 'red' }}>
-				GO BACK
-			</button>
 			{gameLoadingStatus === 'loading' ? (
 				<h1>loading...</h1>
 			) : gameLoadingStatus === 'error' ? (
 				<h1>error</h1>
 			) : (
 				<div className="container">
+					<button className="btn" onClick={goBack} style={{ color: 'red' }}>
+						GO BACK
+					</button>
 					<div className="game">
 						<p className="game__name">{game.name}</p>
 						<img src={game.background_image} alt="" />
 					</div>
-					{/* <div className="game__descr">
-						{game.description}
-					</div>  я потім зроблю кнопку show more, show less*/} 
 				</div>
 			)}
 		</>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchSearchGames } from './headerSlice'
-import {AiOutlineSearch} from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+import { AiOutlineSearch } from 'react-icons/ai'
+import { Link, useNavigate } from 'react-router-dom'
 import './Header.scss'
 function Header() {
 	const dispatch = useDispatch()
@@ -11,6 +11,11 @@ function Header() {
 	const { searchGames, searchGamesLoadingStatus } = useSelector(
 		state => state.searchGames
 	)
+	const { savedGames } = useSelector(state => state.games)
+	let uniqueArr = savedGames.filter(
+		(a, i) => savedGames.findIndex(s => a.name === s.name) === i
+	) 
+	const navigate = useNavigate()
 	useEffect(() => {
 		if (value.trimStart().length >= 1) {
 			setPopup(true)
@@ -19,14 +24,28 @@ function Header() {
 			setPopup(false)
 		}
 	}, [value])
-
+	const onCardClick = slug => {
+		return () => {
+			navigate(`game/${slug}`)
+			setPopup(false)
+			setValue('')
+		}
+	}
 	const renderSearchGames = arr => {
 		if (!arr.length) {
 			return <h1 className='header__text'>Ігор не знайдено!</h1>
 		}
 		return arr.map(item => (
-			<div className='header__dropdown_el' key={item.id + item.rating}>
-				<img alt='Game image' className='header__img' src={item.background_image}></img>
+			<div
+				onClick={onCardClick(item.slug)}
+				className='header__dropdown_el'
+				key={item.id + item.rating}
+			>
+				<img
+					alt='Game image'
+					className='header__img'
+					src={item.background_image}
+				></img>
 				{item.name}
 			</div>
 		))
@@ -35,7 +54,7 @@ function Header() {
 		<>
 			<div className='container'>
 				<div className='header'>
-				<AiOutlineSearch/>
+					<AiOutlineSearch />
 					<input
 						value={value}
 						onChange={e => setValue(e.target.value)}
@@ -44,7 +63,7 @@ function Header() {
 						type='text'
 					/>
 				</div>
-				
+
 				<div className='header__dropdown'>
 					{popup ? (
 						searchGamesLoadingStatus === 'error' ? (
@@ -57,11 +76,10 @@ function Header() {
 					) : null}
 				</div>
 				<Link to='/whitelist' className='link'>
-					WHITELIST
+					Go to your: {uniqueArr.length} saved games
 				</Link>
 				{/* я знаю що він завжди буде тут навіть коли перейдеш на сторінку я потім стилі добавлю і пофікшу не парся */}
 			</div>
-			
 		</>
 	)
 }
