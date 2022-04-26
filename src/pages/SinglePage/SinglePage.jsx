@@ -1,16 +1,14 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { fetchSingleGame } from './singlePageSlice'
-import { useHttp } from '../../hooks/http.hook'
+import { fetchSingleGame,fetchScreenshots,fetchStores } from './singlePageSlice'
 import './singlePage.scss'
 import Slider from "react-slick";
 const SinglePage = () => {
-	const { game, gameLoadingStatus } = useSelector(state => state.singleGame)
+	const { game, gameLoadingStatus,screen } = useSelector(state => state.singleGame)
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const { name } = useParams()
-	let screenshots = [];
 	const settings = {
 		dots: true,
 		infinite: true,
@@ -20,6 +18,8 @@ const SinglePage = () => {
 	  };
 	React.useEffect(() => {
 		dispatch(fetchSingleGame(name))
+		dispatch(fetchScreenshots(name))
+		dispatch(fetchStores(name))
 	}, [name])
 	const goBack = () => navigate(-1)
 	return (
@@ -35,14 +35,13 @@ const SinglePage = () => {
 					</button>
 					<div className="game">
 						<p className="game__name">{game.name}</p>
-						<Slider {...settings}>
-						<div>
-							<img src={game.background_image} alt="game__image" />
-						</div>
-						<div>
-						<img src={game.background_image_additional} alt="game__image" />
-						</div>
-						</Slider>
+					<Slider {...settings}>
+						{!screen.results ? null : screen.results.map(item =>{
+							return (<div>
+								<img src={item.image} alt="game__image" />
+							</div>)
+						})}
+					</Slider>
 						<div className="game__info-box">
 							<div className="game__info-box-left">
 								<p>Rating: {game.rating}</p>
@@ -64,3 +63,13 @@ const SinglePage = () => {
 }
 
 export default SinglePage
+
+//"store_id": 5 - gog.com
+//"store_id": 3, - storePlaystation
+//"store_id": 1, - steam
+//"store_id": 2, - microsoft store
+//"store_id": 6, - nintendo
+//"store_id": 7, - xbox
+//"store_id": 11, - epic games
+//singleGames -> stores
+//єбися сам
