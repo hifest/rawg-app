@@ -12,6 +12,16 @@
         text-align: center;
         padding: 10px;
     }
+    &__box-link{
+        display: flex;
+        grid-gap: 25px;
+        justify-content: center;
+        padding: 20px 0px 20px 0px;
+        align-items: center;
+    }
+    &__link{
+        max-width: 80px;
+    }
     &__info{
         &-box{
             display: flex;
@@ -29,4 +39,8 @@
         object-fit: cover;
         max-height: 100%;
     }
+}
+h3{
+    color: rgb(250, 164, 35);
+    text-align: center;
 }
