@@ -4,6 +4,7 @@ import { useHttp } from '../../hooks/http.hook'
 const initialState = {
 	game: {},
 	gameLoadingStatus: 'idle',
+	screen: []
 }
 
 export const fetchSingleGame = createAsyncThunk(
@@ -19,7 +20,9 @@ export const fetchSingleGame = createAsyncThunk(
 const gameSlice = createSlice({
 	name: 'game',
 	initialState,
-	reducers: {},
+	reducers: {
+
+	},
 	extraReducers: builder => {
 		builder
 			.addCase(fetchSingleGame.pending, state => {

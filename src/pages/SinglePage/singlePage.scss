@@ -1,19 +1,32 @@
 .game{
+    max-width: 1000px;
+    margin: 0 auto;
     &__name{
-        font-size: 45px;
+        font-size: 35px;
         color: white;
         text-align: center;
     }
-    & > img{
-        max-width: 100%;
-        margin: 0 auto;
-        display: block;
-        max-height: 644px;
-    }
-    &__descr{
+    &__description{
         font-size:16px;
-        max-width: 350px;
-        color: white;
+        color: rgb(255, 255, 255);
         text-align: center;
+        padding: 10px;
+    }
+    &__info{
+        &-box{
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            justify-content: space-between;
+        }
+    }
+    p{
+        padding-top:5px;
+        color: white; ////i fuck my brain
+    }
+    img{
+        max-width: 100%;
+        object-fit: cover;
+        max-height: 100%;
     }
 }
