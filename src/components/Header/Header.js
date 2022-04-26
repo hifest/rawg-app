@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchSearchGames } from './headerSlice'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
+import useDebounce from '../../hooks/useDebounce'
 import './Header.scss'
 function Header() {
 	const dispatch = useDispatch()
 	const [value, setValue] = useState('')
+	const debouncedValue = useDebounce(value, 600)
 	const [popup, setPopup] = useState(false)
 	const { searchGames, searchGamesLoadingStatus } = useSelector(
 		state => state.searchGames
@@ -14,7 +16,7 @@ function Header() {
 	const { savedGames } = useSelector(state => state.games)
 	let uniqueArr = savedGames.filter(
 		(a, i) => savedGames.findIndex(s => a.name === s.name) === i
-	) 
+	)
 	const navigate = useNavigate()
 	useEffect(() => {
 		if (value.trimStart().length >= 1) {
@@ -23,7 +25,7 @@ function Header() {
 		} else {
 			setPopup(false)
 		}
-	}, [value])
+	}, [debouncedValue])
 	const onCardClick = slug => {
 		return () => {
 			navigate(`game/${slug}`)
@@ -76,7 +78,9 @@ function Header() {
 					) : null}
 				</div>
 				<Link to='/whitelist' className='link'>
-					Go to your: {uniqueArr.length} saved games
+					{savedGames.length > 0
+						? `Go to your: ${uniqueArr.length} saved games`
+						: 'WhiteList'}
 				</Link>
 				{/* я знаю що він завжди буде тут навіть коли перейдеш на сторінку я потім стилі добавлю і пофікшу не парся */}
 			</div>

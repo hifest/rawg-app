@@ -1,19 +1,21 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchGamesList, addToWhitelist,deleteFromWhiteList } from './gameListSlice'
+import {
+	fetchGamesList,
+	addToWhitelist,
+	deleteFromWhiteList,
+} from './gameListSlice'
 import './gameList.scss'
 import { Link } from 'react-router-dom'
-
 function GameList() {
 	const dispatch = useDispatch()
-	const [scrollBehave, setScrollBehave] = useState(10)
 	const { games, gamesLoadingStatus, activeFilter, savedGames } = useSelector(
 		state => state.games
 	)
 
 	useEffect(() => {
-		dispatch(fetchGamesList(scrollBehave, activeFilter))
+		dispatch(fetchGamesList(30, activeFilter))
 	}, [activeFilter])
 
 	const addToWhitelistFunc = (id, name, backgroundImage, slug) => {
@@ -37,7 +39,12 @@ function GameList() {
 							Жанри:{item.genres.slice(0, 2).map(item => ` ${item.name}`)}
 						</p>
 						{savedGames.some(game => game.id === item.id) ? (
-							<button onClick={() => dispatch(deleteFromWhiteList(item.id))}  className='gameList__haveWhitelist'>✅</button>
+							<button
+								onClick={() => dispatch(deleteFromWhiteList(item.id))}
+								className='gameList__haveWhitelist'
+							>
+								✅
+							</button>
 						) : (
 							<button
 								className='btn'

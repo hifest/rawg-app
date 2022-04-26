@@ -30,11 +30,11 @@ function WhiteListPage() {
 	}
 	return (
 		<div className='container'>
-			<button className='btn' onClick={goBack} style={{ color: 'red' }}>
+			<button className='btn' onClick={goBack} style={{ color: 'red', marginBottom: 20 }}>
 				GO BACK ⮐
 			</button>
 			<div className='whitelist'>
-				{savedGames.length >= 1 ? renderSaveGames(uniqueArr) : <h1 className='check_game'>Виберете игри</h1>}
+				{savedGames.length >= 1 ? renderSaveGames(uniqueArr) : <h1 className='check_game'>У вас немає ігор</h1>}
 			</div>
 		</div>
 	)
