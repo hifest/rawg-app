@@ -79,8 +79,8 @@ function Header() {
 				</div>
 				<Link to='/whitelist' className='link'>
 					{savedGames.length > 0
-						? `Go to your: ${uniqueArr.length} saved games`
-						: 'WhiteList'}
+						? <button className='btn'>{uniqueArr.length} - saved Games</button>
+						: <button className='btn'>Add game</button>}
 				</Link>
 				{/* я знаю що він завжди буде тут навіть коли перейдеш на сторінку я потім стилі добавлю і пофікшу не парся */}
 			</div>
