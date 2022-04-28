@@ -9,13 +9,16 @@ import {
 import './gameList.scss'
 import { Link } from 'react-router-dom'
 function GameList() {
+	const [limit, setLimit] = useState(3)
 	const dispatch = useDispatch()
 	const { games, gamesLoadingStatus, activeFilter, savedGames } = useSelector(
 		state => state.games
 	)
 
 	useEffect(() => {
-		dispatch(fetchGamesList(30, activeFilter))
+		if (!games?.results?.length > 0) {
+			dispatch(fetchGamesList(40, activeFilter))
+		}
 	}, [activeFilter])
 
 	const addToWhitelistFunc = (id, name, backgroundImage, slug) => {
@@ -74,10 +77,12 @@ function GameList() {
 					) : gamesLoadingStatus === 'error' ? (
 						<h5 className='text-center mt-5'> Ошибка загрузки </h5>
 					) : (
-						renderGames(games.results)
+						renderGames(games.results?.slice(0, limit))
 					)}
+					<button onClick={() => setLimit(prev => prev + 5)}>
+						Load more games
+					</button>
 				</div>
-				{/* / Цей коментар все пояснює. */}
 			</div>
 		</div>
 	)
