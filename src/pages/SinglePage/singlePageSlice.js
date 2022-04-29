@@ -80,6 +80,6 @@ const gameSlice = createSlice({
 	},
 })
 
-const { actions, reducer } = gameSlice
+const {  reducer } = gameSlice
 
 export default reducer

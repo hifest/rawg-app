@@ -36,8 +36,7 @@ const searchSlice = createSlice({
 	},
 })
 
-const { actions, reducer } = searchSlice
+const { reducer } = searchSlice
 
 export default reducer
 
-export const {} = actions

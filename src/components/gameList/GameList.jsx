@@ -1,6 +1,7 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
+import React, { useRef } from 'react'
+import { useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import useScroll from '../../hooks/useScroll'
 import {
 	fetchGamesList,
 	addToWhitelist,
@@ -9,17 +10,19 @@ import {
 import './gameList.scss'
 import { Link } from 'react-router-dom'
 function GameList() {
-	const [limit, setLimit] = useState(3)
+	const childRef = useRef()
+	const limit = useScroll(childRef)
 	const dispatch = useDispatch()
 	const { games, gamesLoadingStatus, activeFilter, savedGames } = useSelector(
 		state => state.games
 	)
 
 	useEffect(() => {
-		if (!games?.results?.length > 0) {
-			dispatch(fetchGamesList(40, activeFilter))
-		}
-	}, [activeFilter])
+		// if (!games?.results?.length > 0) {
+		// 	dispatch(fetchGamesList(40, activeFilter))
+		// }
+		dispatch(fetchGamesList(40, activeFilter))
+	}, [activeFilter]) // eslint-disable-line react-hooks/exhaustive-deps
 
 	const addToWhitelistFunc = (id, name, backgroundImage, slug) => {
 		dispatch(addToWhitelist({ id, name, backgroundImage, slug }))
@@ -32,7 +35,7 @@ function GameList() {
 			return (
 				<div key={item.id}>
 					<Link to={`/game/${item.slug}`}>
-						<img src={item.background_image} alt='game-image' />
+						<img src={item.background_image} alt='game' />
 					</Link>
 					<p className='gameList__name'> 🎮{item.name}🎮</p>
 
@@ -79,10 +82,8 @@ function GameList() {
 					) : (
 						renderGames(games.results?.slice(0, limit))
 					)}
-					<button onClick={() => setLimit(prev => prev + 5)}>
-						Load more games
-					</button>
 				</div>
+				<div ref={childRef}></div>
 			</div>
 		</div>
 	)

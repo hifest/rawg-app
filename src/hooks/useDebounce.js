@@ -10,7 +10,7 @@ export default function useDebounce(value, delay) {
 		return () => {
 			clearTimeout(handler)
 		}
-	}, [value])
+	}, [value]) // eslint-disable-line react-hooks/exhaustive-deps
 
 	return debouncedValue
 }

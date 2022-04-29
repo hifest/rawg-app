@@ -56,5 +56,4 @@ export default reducer
 
 export const { changeActiveFilter, addToWhitelist, deleteFromWhiteList } =
 	actions
-//y вечной любви нету смерти
-//ТС стрикало)
+

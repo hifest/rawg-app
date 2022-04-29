@@ -25,7 +25,7 @@ function Header() {
 		} else {
 			setPopup(false)
 		}
-	}, [debouncedValue])
+	}, [debouncedValue]) // eslint-disable-line react-hooks/exhaustive-deps
 	const onCardClick = slug => {
 		return () => {
 			navigate(`game/${slug}`)
@@ -44,7 +44,7 @@ function Header() {
 				key={item.id + item.rating}
 			>
 				<img
-					alt='Game image'
+					alt='Game'
 					className='header__img'
 					src={item.background_image}
 				></img>
@@ -78,9 +78,11 @@ function Header() {
 					) : null}
 				</div>
 				<Link to='/whitelist' className='link'>
-					{savedGames.length > 0
-						? <button className='btn'>{uniqueArr.length} - saved Games</button>
-						: <button className='btn'>Add game</button>}
+					{savedGames.length > 0 ? (
+						<button className='btn'>{uniqueArr.length} - saved Games</button>
+					) : (
+						<button className='btn'>Add game</button>
+					)}
 				</Link>
 				{/* я знаю що він завжди буде тут навіть коли перейдеш на сторінку я потім стилі добавлю і пофікшу не парся */}
 			</div>

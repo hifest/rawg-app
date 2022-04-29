@@ -1,5 +1,5 @@
 import React from 'react'
-import GamesFilter from '../../components/gamesFilter/GamesFilter.js'
+import GamesFilter from '../../components/gamesFilter/GamesFilter'
 import GameList from '../../components/gameList/GameList'
 const Home = () => {
 	return (
