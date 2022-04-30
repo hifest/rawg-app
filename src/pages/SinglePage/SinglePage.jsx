@@ -73,7 +73,7 @@ const SinglePage = () => {
 								? null
 								: stores.results.map(item => {
 										return (
-											<a className='game__link' href={item.url}>
+											<a key={item.id} className='game__link' href={item.url}>
 												<img
 													src={
 														item.store_id === 1
