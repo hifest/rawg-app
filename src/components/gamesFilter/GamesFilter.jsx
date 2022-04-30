@@ -1,10 +1,11 @@
-import { React, useState, useEffect } from "react";
-import { changeActiveFilter } from "../gameList/gameListSlice";
-import { useDispatch } from "react-redux";
-import Select from "react-select";
+import { React, useState, useEffect } from 'react'
+import { changeActiveFilter } from '../gameList/gameListSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import Select from 'react-select'
 import './gamesFilter.scss'
 function GamesFilter() {
 	const dispatch = useDispatch()
+	const { activeFilter } = useSelector(state => state.games)
 	const options = [
 		{ value: 'action', label: 'Action' },
 		{ value: 'adventure', label: 'Adventure' },
@@ -15,9 +16,12 @@ function GamesFilter() {
 		{ value: '15', label: 'Sport' },
 		{ value: '1', label: 'Racing' },
 	]
-	const [selectedOption, setSelectedOption] = useState({
-		value: 'action',
-		label: 'Action',
+	const [selectedOption, setSelectedOption] = useState(() => {
+		if (activeFilter) {
+			return { value: `${activeFilter}`, label: `${activeFilter}` }
+		} else {
+			return { value: 'action', label: 'Action' }
+		}
 	})
 
 	useEffect(() => {
@@ -38,4 +42,4 @@ function GamesFilter() {
 }
 //паша з стилями хуйня https://react-select.com/styles#provided-styles-and-state пробуй сам я заєбався
 
-export default GamesFilter;
+export default GamesFilter

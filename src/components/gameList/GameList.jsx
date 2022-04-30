@@ -18,13 +18,13 @@ function GameList() {
 		state => state.games
 	)
 	useEffect(() => {	
-		if(activeFilter !== oldFilter){
-			dispatch(AddOldFilter(activeFilter))//воно працює не трогай
-		}
-			if (!games?.results?.length > 0 || oldFilter !== activeFilter) {//воно працює не трогай
-				dispatch(fetchGamesList(40, activeFilter))
-			}
-			// dispatch(fetchGamesList(40, activeFilter))
+		// if(activeFilter !== oldFilter){
+		// 	dispatch(AddOldFilter(activeFilter))//воно працює не трогай
+		// }
+		// 	if (!games?.results?.length > 0 || oldFilter !== activeFilter) {//воно працює не трогай
+		// 		dispatch(fetchGamesList(40, activeFilter))
+		// 	}
+			dispatch(fetchGamesList(40, activeFilter))
 	}, [activeFilter]) // eslint-disable-line react-hooks/exhaustive-deps
 	//воно працює не трогай
 	const addToWhitelistFunc = (id, name, backgroundImage, slug) => {

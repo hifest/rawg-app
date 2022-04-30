@@ -81,10 +81,9 @@ function Header() {
 					{savedGames.length > 0 ? (
 						<button className='btn'>{uniqueArr.length} - saved Games</button>
 					) : (
-						<button className='btn'>Add game</button>
+						<button className='btn'>Whitelist</button>
 					)}
 				</Link>
-				{/* я знаю що він завжди буде тут навіть коли перейдеш на сторінку я потім стилі добавлю і пофікшу не парся */}
 			</div>
 		</>
 	)
