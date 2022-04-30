@@ -6,6 +6,7 @@ const initialState = {
 	gamesLoadingStatus: 'idle',
 	activeFilter: 'action',
 	savedGames: [],
+	oldFilter: ''
 }
 
 export const fetchGamesList = createAsyncThunk(
@@ -34,6 +35,9 @@ export const gamesSlice = createSlice({
 				game => game.id !== action.payload
 			)
 		},
+		AddOldFilter: (state, action) => {
+			state.oldFilter = action.payload
+		},
 	},
 	extraReducers: builder => {
 		builder
@@ -54,6 +58,6 @@ const { actions, reducer } = gamesSlice
 
 export default reducer
 
-export const { changeActiveFilter, addToWhitelist, deleteFromWhiteList } =
+export const { changeActiveFilter, addToWhitelist, deleteFromWhiteList,AddOldFilter } =
 	actions
 
