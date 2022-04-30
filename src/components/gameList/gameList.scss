@@ -48,7 +48,7 @@ img {
 		font-weight: 700;
 		grid-gap: 32px;
 		color: white;
-		& > div {
+		&_block {
 			cursor: pointer;
 			max-width: 100%;
 			padding: 25px;

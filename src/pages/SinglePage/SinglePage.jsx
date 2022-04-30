@@ -7,6 +7,8 @@ import {
   fetchStores,
 } from "./singlePageSlice";
 import "./singlePage.scss";
+import Spinner from "../../Spinner/Spinner";
+
 import Slider from "react-slick";
 import steam from "../../image/Steam_Logo.png";
 import VaginaPingvina from "../../image/Epic_Games_logo.svg.png";
@@ -35,7 +37,9 @@ const SinglePage = () => {
 	return (
 		<>
 			{gameLoadingStatus === 'loading' ? (
-				<h1>loading...</h1>
+				<div className="center-spinner">
+					<Spinner/>
+				</div>
 			) : gameLoadingStatus === 'error' ? (
 				<h1>error</h1>
 			) : (

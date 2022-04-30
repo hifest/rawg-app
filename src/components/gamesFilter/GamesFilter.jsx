@@ -1,11 +1,14 @@
-import { React, useState, useEffect } from 'react'
-import { changeActiveFilter } from '../gameList/gameListSlice'
-import { useDispatch, useSelector } from 'react-redux'
-import Select from 'react-select'
+import { React, useState, useEffect } from "react";
+import { changeActiveFilter,changeActiveFilterObj } from "../gameList/gameListSlice";
+import { useDispatch,useSelector } from "react-redux";
+import Select from "react-select";
 import './gamesFilter.scss'
+
 function GamesFilter() {
 	const dispatch = useDispatch()
-	const { activeFilter } = useSelector(state => state.games)
+	const { activeFilterObj,activeFilter } = useSelector(
+		state => state.games
+	)
 	const options = [
 		{ value: 'action', label: 'Action' },
 		{ value: 'adventure', label: 'Adventure' },
@@ -18,7 +21,7 @@ function GamesFilter() {
 	]
 	const [selectedOption, setSelectedOption] = useState(() => {
 		if (activeFilter) {
-			return { value: `${activeFilter}`, label: `${activeFilter}` }
+			return { value: `${activeFilterObj.value}`, label: `${activeFilterObj.label}` }
 		} else {
 			return { value: 'action', label: 'Action' }
 		}
@@ -26,6 +29,7 @@ function GamesFilter() {
 
 	useEffect(() => {
 		dispatch(changeActiveFilter(selectedOption.value))
+		dispatch(changeActiveFilterObj(selectedOption))
 	}, [selectedOption]) // eslint-disable-line react-hooks/exhaustive-deps
 
 	return (
@@ -42,4 +46,5 @@ function GamesFilter() {
 }
 //паша з стилями хуйня https://react-select.com/styles#provided-styles-and-state пробуй сам я заєбався
 
-export default GamesFilter
+export default GamesFilter;
+//ВСЕ РЕШЕНО ПАПА Я ГЕЙ МАМА Я ГЕЙ

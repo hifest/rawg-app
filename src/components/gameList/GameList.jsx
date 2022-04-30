@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import { useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import useScroll from '../../hooks/useScroll'
+import Spinner from '../../Spinner/Spinner'
 import {
 	fetchGamesList,
 	addToWhitelist,
@@ -18,13 +19,13 @@ function GameList() {
 		state => state.games
 	)
 	useEffect(() => {	
-		// if(activeFilter !== oldFilter){
-		// 	dispatch(AddOldFilter(activeFilter))//воно працює не трогай
-		// }
-		// 	if (!games?.results?.length > 0 || oldFilter !== activeFilter) {//воно працює не трогай
-		// 		dispatch(fetchGamesList(40, activeFilter))
-		// 	}
-			dispatch(fetchGamesList(40, activeFilter))
+		if(activeFilter !== oldFilter){
+			dispatch(AddOldFilter(activeFilter))//воно працює не трогай
+		}
+			if (!games?.results?.length > 0 || oldFilter !== activeFilter) {//воно працює не трогай
+				dispatch(fetchGamesList(40, activeFilter))
+			}
+			// dispatch(fetchGamesList(40, activeFilter))
 	}, [activeFilter]) // eslint-disable-line react-hooks/exhaustive-deps
 	//воно працює не трогай
 	const addToWhitelistFunc = (id, name, backgroundImage, slug) => {
@@ -36,7 +37,7 @@ function GameList() {
 		}
 		return arr.map(item => {
 			return (
-				<div key={item.id}>
+				<div key={item.id} className='gameList__games_block'>
 					<Link to={`/game/${item.slug}`}>
 						<img src={item.background_image} alt='game' />
 					</Link>
@@ -79,11 +80,13 @@ function GameList() {
 			<div className='gameList'>
 				<div className='gameList__games'>
 					{gamesLoadingStatus === 'loading' ? (
-						<div> Loading! </div>
+						<Spinner/>
 					) : gamesLoadingStatus === 'error' ? (
 						<h5 className='text-center mt-5'> Ошибка загрузки </h5>
 					) : (
+
 						renderGames(games.results?.slice(0, limit))
+						// <Spinner/>
 					)}
 				</div>
 				<div ref={childRef}></div>
