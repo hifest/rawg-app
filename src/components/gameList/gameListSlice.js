@@ -7,7 +7,10 @@ const initialState = {
 	activeFilter: 'action',
 	savedGames: [],
 	oldFilter: '',
-	activeFilterObj: {}
+	activeFilterObj: {
+		value: 'action',
+		label: 'Путин хуйло'
+	}
 }
 
 export const fetchGamesList = createAsyncThunk(

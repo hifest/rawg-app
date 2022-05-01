@@ -21,7 +21,10 @@ function GamesFilter() {
 	]
 	const [selectedOption, setSelectedOption] = useState(() => {
 		if (activeFilter) {
-			return { value: `${activeFilterObj.value}`, label: `${activeFilterObj.label}` }
+			return {
+				value: `${activeFilterObj?.value || 'action'}`,
+				label: `${activeFilterObj?.label || 'Action'}`,
+			}
 		} else {
 			return { value: 'action', label: 'Action' }
 		}

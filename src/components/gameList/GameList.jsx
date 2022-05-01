@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import useScroll from '../../hooks/useScroll'
-import Spinner from '../../Spinner/Spinner'
+import Spinner from '../Spinner/Spinner'
 import {
 	fetchGamesList,
 	addToWhitelist,

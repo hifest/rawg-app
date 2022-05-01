@@ -1,19 +1,19 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
 import {
-  fetchSingleGame,
-  fetchScreenshots,
-  fetchStores,
-} from "./singlePageSlice";
-import "./singlePage.scss";
-import Spinner from "../../Spinner/Spinner";
+	fetchSingleGame,
+	fetchScreenshots,
+	fetchStores,
+} from './singlePageSlice'
+import './singlePage.scss'
+import Spinner from '../../components/Spinner/Spinner' 
 
-import Slider from "react-slick";
-import steam from "../../image/Steam_Logo.png";
-import VaginaPingvina from "../../image/Epic_Games_logo.svg.png";
-import PizdaTransa from "../../image/pngwing.com.png";
-import ILOVENIGGERS from "../../image/ps.png";
+import Slider from 'react-slick'
+import steam from '../../image/Steam_Logo.png'
+import VaginaPingvina from '../../image/Epic_Games_logo.svg.png'
+import PizdaTransa from '../../image/pngwing.com.png'
+import ILOVENIGGERS from '../../image/ps.png'
 const SinglePage = () => {
 	const { game, gameLoadingStatus, screen, stores } = useSelector(
 		state => state.singleGame
@@ -37,8 +37,8 @@ const SinglePage = () => {
 	return (
 		<>
 			{gameLoadingStatus === 'loading' ? (
-				<div className="center-spinner">
-					<Spinner/>
+				<div className='center-spinner'>
+					<Spinner />
 				</div>
 			) : gameLoadingStatus === 'error' ? (
 				<h1>error</h1>
@@ -101,9 +101,9 @@ const SinglePage = () => {
 			)}
 		</>
 	)
-};
+}
 
-export default SinglePage;
+export default SinglePage
 
 //"store_id": 5 - gog.com
 //"store_id": 3, - storePlaystation
