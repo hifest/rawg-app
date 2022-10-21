@@ -7,13 +7,13 @@ import {
 	fetchStores,
 } from './singlePageSlice'
 import './singlePage.scss'
-import Spinner from '../../components/Spinner/Spinner' 
+import Spinner from '../../components/Spinner/Spinner'
 
 import Slider from 'react-slick'
 import steam from '../../image/Steam_Logo.png'
-import VaginaPingvina from '../../image/Epic_Games_logo.svg.png'
-import PizdaTransa from '../../image/pngwing.com.png'
-import ILOVENIGGERS from '../../image/ps.png'
+import epic from '../../image/Epic_Games_logo.svg.png'
+import wing from '../../image/pngwing.com.png'
+import ps from '../../image/ps.png'
 const SinglePage = () => {
 	const { game, gameLoadingStatus, screen, stores } = useSelector(
 		state => state.singleGame
@@ -73,8 +73,8 @@ const SinglePage = () => {
 						<p className='game__description'>{game.description_raw}</p>
 						<h3>Where buy?</h3>
 						<div className='game__box-link'>
-							{!stores.results
-								? null
+							{!stores?.results?.length >= 1
+								? 'You can not buy this game :('
 								: stores.results.map(item => {
 										return (
 											<a key={item.id} className='game__link' href={item.url}>
@@ -83,14 +83,14 @@ const SinglePage = () => {
 														item.store_id === 1
 															? steam
 															: item.store_id === 11
-															? VaginaPingvina
+															? epic
 															: item.store_id === 7
-															? PizdaTransa
+															? wing
 															: item.store_id === 3
-															? ILOVENIGGERS
+															? ps
 															: null
 													}
-													alt=''
+													alt='game'
 												/>
 											</a>
 										)
@@ -113,4 +113,3 @@ export default SinglePage
 //"store_id": 7, - xbox
 //"store_id": 11, - epic games
 //singleGames -> stores
-//єбися сам

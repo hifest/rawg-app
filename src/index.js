@@ -9,13 +9,13 @@ import { persistor } from './store/store'
 import './styles/index.scss'
 ReactDOM.render(
 	<React.StrictMode>
-		<Provider store={store}>
-			<PersistGate loading={null} persistor={persistor}>
-				<BrowserRouter>
+		<BrowserRouter>
+			<Provider store={store}>
+				<PersistGate loading={null} persistor={persistor}>
 					<App />
-				</BrowserRouter>
-			</PersistGate>
-		</Provider>
+				</PersistGate>
+			</Provider>
+		</BrowserRouter>
 	</React.StrictMode>,
 	document.getElementById('root')
 )

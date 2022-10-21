@@ -1,11 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { useHttp } from '../../hooks/http.hook'
-
+import { useHttp } from '../../hooks/useHttp'
 const initialState = {
 	searchGames: [],
 	searchGamesLoadingStatus: 'idle',
 }
-
+// const { REACT_APP_API_KEY } = process.env
 export const fetchSearchGames = createAsyncThunk(
 	'games/fetchSeachGames',
 	async search => {
@@ -39,4 +38,3 @@ const searchSlice = createSlice({
 const { reducer } = searchSlice
 
 export default reducer
-

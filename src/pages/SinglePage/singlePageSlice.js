@@ -1,19 +1,19 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { useHttp } from '../../hooks/http.hook'
+import { useHttp } from '../../hooks/useHttp'
 
 const initialState = {
 	game: {},
 	gameLoadingStatus: 'idle',
 	screen: [],
-	stores: []
+	stores: [],
 }
-
+const { REACT_APP_API_KEY } = process.env
 export const fetchSingleGame = createAsyncThunk(
 	'game/fetchSingleGame',
 	async name => {
 		const { request } = useHttp()
 		return await request(
-			`https://api.rawg.io/api/games/${name}?key=e2f90b4e56164fc6996b2abb0faa856e`
+			`https://api.rawg.io/api/games/${name}?key=${REACT_APP_API_KEY}`
 		)
 	}
 )
@@ -22,28 +22,23 @@ export const fetchScreenshots = createAsyncThunk(
 	async name => {
 		const { request } = useHttp()
 		return await request(
-			`https://api.rawg.io/api/games/${name}/screenshots?key=e2f90b4e56164fc6996b2abb0faa856e`
+			`https://api.rawg.io/api/games/${name}/screenshots?key=${REACT_APP_API_KEY}`
 		)
 	}
 )
-export const fetchStores = createAsyncThunk(
-	'game/fetchStores',
-	async name => {
-		const { request } = useHttp()
-		return await request(
-			`https://api.rawg.io/api/games/${name}/stores?key=e2f90b4e56164fc6996b2abb0faa856e`
-		)
-	}
-)
+export const fetchStores = createAsyncThunk('game/fetchStores', async name => {
+	const { request } = useHttp()
+	return await request(
+		`https://api.rawg.io/api/games/${name}/stores?key=${REACT_APP_API_KEY}`
+	)
+})
 const gameSlice = createSlice({
 	name: 'game',
 	initialState,
-	reducers: {
-
-	},
+	reducers: {},
 	extraReducers: builder => {
 		builder
-		//
+			//
 			.addCase(fetchSingleGame.pending, state => {
 				state.gameLoadingStatus = 'loading'
 			})
@@ -54,7 +49,7 @@ const gameSlice = createSlice({
 			.addCase(fetchSingleGame.rejected, state => {
 				state.gameLoadingStatus = 'error'
 			})
-			//
+
 			.addCase(fetchScreenshots.pending, state => {
 				state.gameLoadingStatus = 'loading'
 			})
@@ -65,7 +60,7 @@ const gameSlice = createSlice({
 			.addCase(fetchScreenshots.rejected, state => {
 				state.gameLoadingStatus = 'error'
 			})
-			//
+
 			.addCase(fetchStores.pending, state => {
 				state.gameLoadingStatus = 'loading'
 			})
@@ -80,6 +75,6 @@ const gameSlice = createSlice({
 	},
 })
 
-const {  reducer } = gameSlice
+const { reducer } = gameSlice
 
 export default reducer

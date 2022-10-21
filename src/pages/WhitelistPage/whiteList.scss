@@ -1,34 +1,33 @@
-.whitelist{
-    &__box{
-        
-        display: flex;
-        background-color: #747474;
-        align-items: center;
-        border-radius: 20px;
-        margin-bottom: 20px;
-        & > img{
-            max-width: 265px;
-            display: block;
-            max-height: 189px;
-        }
-        &__name{
-            color: white;
-            margin-left: 5%;
-            margin-right: 2%;
-            text-align: center;
-            font-size: 50px;
-        }
-    }
+.whitelist {
+	&__box {
+		display: flex;
+		background-color: #747474;
+		align-items: center;
+		border-radius: 20px;
+		margin-bottom: 20px;
+		& > img {
+			max-width: 265px;
+			display: block;
+			max-height: 189px;
+		}
+		&__name {
+			color: white;
+			margin-left: 5%;
+			margin-right: 2%;
+			text-align: center;
+			font-size: 50px;
+		}
+	}
 }
-a{
-    text-decoration: none;
-    transition: 0.3s all;
-    &:hover{
-        color: orange;
-    }
+a {
+	text-decoration: none;
+	transition: 0.3s all;
+	&:hover {
+		color: orange;
+	}
 }
-.check_game{
-    color: white;
-    text-align: center;
-    font-size:45px;
+.check_game {
+	color: white;
+	text-align: center;
+	font-size: 45px;
 }

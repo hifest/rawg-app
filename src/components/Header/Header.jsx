@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchSearchGames } from './headerSlice'
 import { AiOutlineSearch } from 'react-icons/ai'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import useDebounce from '../../hooks/useDebounce'
+import SearchItem from './SearchItem'
 import './Header.scss'
+import WhiteListBtn from '../WhiteListBtn/WhiteListBtn'
 function Header() {
 	const dispatch = useDispatch()
 	const [value, setValue] = useState('')
@@ -13,10 +15,7 @@ function Header() {
 	const { searchGames, searchGamesLoadingStatus } = useSelector(
 		state => state.searchGames
 	)
-	const { savedGames } = useSelector(state => state.games)
-	let uniqueArr = savedGames.filter(
-		(a, i) => savedGames.findIndex(s => a.name === s.name) === i
-	)
+	const location = useLocation()
 	const navigate = useNavigate()
 	useEffect(() => {
 		if (value.trimStart().length >= 1) {
@@ -38,18 +37,11 @@ function Header() {
 			return <h1 className='header__text'>Ігор не знайдено!</h1>
 		}
 		return arr.map(item => (
-			<div
-				onClick={onCardClick(item.slug)}
-				className='header__dropdown_el'
+			<SearchItem
 				key={item.id + item.rating}
-			>
-				<img
-					alt='Game'
-					className='header__img'
-					src={item.background_image}
-				></img>
-				{item.name}
-			</div>
+				item={item}
+				onCardClick={onCardClick}
+			/>
 		))
 	}
 	return (
@@ -77,13 +69,7 @@ function Header() {
 						)
 					) : null}
 				</div>
-				<Link to='/whitelist' className='link'>
-					{savedGames.length > 0 ? (
-						<button className='btn'>{uniqueArr.length} - saved Games</button>
-					) : (
-						<button className='btn'>Whitelist</button>
-					)}
-				</Link>
+				{location.pathname !== '/whitelist' && <WhiteListBtn />}
 			</div>
 		</>
 	)
